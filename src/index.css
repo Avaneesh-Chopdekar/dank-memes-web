@@ -1,0 +1,40 @@
+body {
+  font-family: "Roboto", "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  /* border: 2px solid black; */
+  height: 60vh;
+  object-fit: contain;
+}
+
+.progress-indicator-height {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 500px) {
+  img {
+    width: 360px;
+    height: 500px;
+  }
+  .progress-indicator-height {
+    height: calc(60vh - 20px);
+  }
+}
