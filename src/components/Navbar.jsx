@@ -4,7 +4,7 @@ import Typography from "@suid/material/Typography";
 
 const Navbar = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" enableColorOnDark>
       <Toolbar>
         <Typography variant="h6" component="h1" flexGrow={1} textAlign="center">
           Dank Memes
