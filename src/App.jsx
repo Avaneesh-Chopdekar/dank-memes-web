@@ -17,6 +17,8 @@ const [loaded, setLoaded] = createSignal(false);
 
 function App() {
 
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
   function fetchData() {
     setLoaded(false);
     fetch("https://meme-api.herokuapp.com/gimme")
@@ -30,8 +32,6 @@ function App() {
   createEffect(() => fetchData());
 
   createEffect(() {
-      const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-
       const theme = createTheme({
         palette: {
           mode: prefersDarkMode() ? "dark" : "light",
