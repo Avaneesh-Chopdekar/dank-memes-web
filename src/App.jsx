@@ -8,10 +8,14 @@ import Subreddit from "./components/Subreddit";
 import Meme from "./components/Meme";
 import Controls from "./components/Controls";
 
+import useMediaQuery from "@suid/material/useMediaQuery";
 import { createTheme, ThemeProvider } from "@suid/material/styles";
+
+const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
 const theme = createTheme({
   palette: {
+    mode: prefersDarkMode ? "dark" : "light",
     primary: {
       main: "#FF4500",
     },
@@ -37,7 +41,12 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box flexGrow={1}>
+      <Box
+        flexGrow={1}
+        bgcolor={"background.default"}
+        color={"text.primary"}
+        minHeight="100vh"
+      >
         <Navbar />
         <Stack mt={3} gap={2} alignItems="center">
           <Subreddit subreddit={subreddit} />
