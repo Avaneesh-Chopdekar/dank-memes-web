@@ -16,16 +16,6 @@ const [subreddit, setSubreddit] = createSignal("");
 const [loaded, setLoaded] = createSignal(false);
 
 function App() {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-
-  const theme = createTheme({
-    palette: {
-      mode: prefersDarkMode() ? "dark" : "light",
-      primary: {
-        main: "#FF4500",
-      },
-    },
-  });
 
   function fetchData() {
     setLoaded(false);
@@ -38,6 +28,19 @@ function App() {
   }
 
   createEffect(() => fetchData());
+
+  createEffect(() {
+      const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+      const theme = createTheme({
+        palette: {
+          mode: prefersDarkMode() ? "dark" : "light",
+          primary: {
+            main: "#FF4500",
+          },
+        },
+      });
+  });
 
   return (
     <ThemeProvider theme={theme}>
