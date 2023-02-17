@@ -12,6 +12,7 @@ import useMediaQuery from "@suid/material/useMediaQuery";
 import { createTheme, ThemeProvider } from "@suid/material/styles";
 
 const [image, setImage] = createSignal("");
+const [preview, setPreview] = createSignal([]);
 const [subreddit, setSubreddit] = createSignal("");
 const [loaded, setLoaded] = createSignal(false);
 
@@ -29,11 +30,12 @@ function App() {
 
   function fetchData() {
     setLoaded(false);
-    fetch("https://meme-api.herokuapp.com/gimme")
+    fetch("https://meme-api.com/gimme")
       .then((res) => res.json())
       .then((data) => {
         setImage(data.url);
         setSubreddit(data.subreddit);
+        setPreview(data.preview);
       });
   }
 
@@ -50,7 +52,12 @@ function App() {
         <Navbar />
         <Stack mt={3} gap={2} alignItems="center">
           <Subreddit subreddit={subreddit} />
-          <Meme image={image} loaded={loaded} setLoaded={setLoaded} />
+          <Meme
+            image={image}
+            loaded={loaded}
+            setLoaded={setLoaded}
+            preview={preview}
+          />
           <Controls image={image} fetchData={fetchData} />
         </Stack>
       </Box>

@@ -1,6 +1,6 @@
 import CircularProgress from "@suid/material/CircularProgress";
 
-const Meme = ({ loaded, setLoaded, image }) => {
+const Meme = ({ loaded, setLoaded, image, preview }) => {
   return (
     <>
       {loaded() ? null : (
@@ -9,7 +9,13 @@ const Meme = ({ loaded, setLoaded, image }) => {
         </div>
       )}
       <img
-        src={image()}
+        src={
+          image().endsWith("gif")
+            ? preview()[2]
+            : preview().length > 3
+            ? preview()[3]
+            : image()
+        }
         alt="meme"
         onLoad={() => setLoaded(true)}
         style={loaded() ? {} : { display: "none" }}
